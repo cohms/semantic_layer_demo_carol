@@ -40,12 +40,12 @@ models:
     staging:
       +materialized: table
     marts:
-      iceberg_demo:
-        +schema: amy_iceberg_prod
-        +access: public
-        +tblproperties:
-          delta.enableIcebergCompatV2: 'true'
-          delta.universalFormat.enabledFormats: iceberg
+      # iceberg_demo:
+      #   +schema: amy_iceberg_prod
+      #   +access: public
+      #   +tblproperties:
+      #     delta.enableIcebergCompatV2: 'true'
+      #     delta.universalFormat.enabledFormats: iceberg
 
 
       +materialized: table
