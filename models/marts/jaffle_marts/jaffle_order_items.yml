@@ -1,0 +1,67 @@
+models:
+  - name: jaffle_order_items
+    description: One row per item included in an order, enriched with customer, product pricing, supply cost, and order timestamps.
+    semantic_model:
+      enabled: true
+      name: order_items
+    agg_time_dimension: ordered_at
+    columns:
+      - name: order_item_id
+        description: The unique identifier for an item within an order.
+        entity:
+          type: primary
+          name: order_item
+      - name: order_id
+        description: The identifier for the order that contains the item.
+        entity:
+          type: foreign
+          name: order_id
+
+      - name: customer_id
+        description: The identifier for the customer who placed the order.
+        entity:
+          type: foreign
+          name: customer
+      - name: product_id
+        description: The identifier for the purchased product.
+        entity:
+          type: foreign
+          name: product
+      - name: ordered_at
+        description: The timestamp when the order containing the item was placed.
+        granularity: day
+        dimension:
+          type: time
+      - name: is_food_item
+        description: Whether the purchased item is food.
+        dimension:
+          type: categorical
+      - name: is_drink_item
+        description: Whether the purchased item is a drink.
+        dimension:
+          type: categorical
+    metrics:
+      - name: order_item_count
+        description: Count of purchased order items.
+        label: Order Item Count
+        type: simple
+        agg: count
+        expr: order_item_id
+      - name: order_count
+        description: Count of distinct orders containing purchased items.
+        label: Order Count
+        type: simple
+        agg: count_distinct
+        expr: order_id
+      - name: item_revenue
+        description: Gross revenue from purchased items before supply costs.
+        label: Item Revenue
+        type: simple
+        agg: sum
+        expr: product_price
+      - name: item_supply_cost
+        description: Supply cost associated with purchased items.
+        label: Item Supply Cost
+        type: simple
+        agg: sum
+        expr: supply_cost

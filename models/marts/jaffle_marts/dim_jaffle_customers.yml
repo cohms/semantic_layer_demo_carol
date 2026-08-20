@@ -1,8 +1,33 @@
 models:
   - name: dim_jaffle_customers
-    description: Customer overview data mart, offering key details for each unique customer. One row per customer.
+    description: Customer overview data mart with one row per customer and lifetime order summary attributes.
+    semantic_model:
+      enabled: true
+      name: customers
     columns:
       - name: customer_id
-        description: The unique key of the orders mart.
-
-
+        description: The unique identifier for a customer.
+        tests:
+          - not_null
+          - unique
+        entity:
+          type: primary
+          name: customer
+      - name: customer_name
+        description: The customer name.
+        dimension:
+          type: categorical
+      - name: customer_type
+        description: Whether the customer is new or returning based on their lifetime order count.
+        dimension:
+          type: categorical
+      - name: first_ordered_at
+        description: The timestamp of the customer's first order.
+        granularity: day
+        dimension:
+          type: time
+      - name: last_ordered_at
+        description: The timestamp of the customer's most recent order.
+        granularity: day
+        dimension:
+          type: time

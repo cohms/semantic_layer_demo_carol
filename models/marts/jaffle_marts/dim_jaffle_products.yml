@@ -1,0 +1,39 @@
+models:
+  - name: dim_jaffle_products
+    description: Product dimension with one row per sellable food or beverage item.
+    semantic_model:
+      enabled: true
+      name: products
+    columns:
+      - name: product_id
+        description: The unique identifier for a sellable product.
+        tests:
+          - not_null
+          - unique
+        entity:
+          type: primary
+          name: product
+      - name: product_name
+        description: The customer-facing name of the product.
+        dimension:
+          type: categorical
+      - name: product_type
+        description: The product category, such as jaffle or beverage.
+        dimension:
+          type: categorical
+      - name: product_description
+        description: A descriptive summary of the product.
+        dimension:
+          type: categorical
+      - name: product_price
+        description: The current listed price of the product.
+        dimension:
+          type: categorical
+      - name: is_food_item
+        description: Whether the product is a food item.
+        dimension:
+          type: categorical
+      - name: is_drink_item
+        description: Whether the product is a drink.
+        dimension:
+          type: categorical

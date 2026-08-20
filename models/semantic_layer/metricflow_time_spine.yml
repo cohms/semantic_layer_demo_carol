@@ -1,5 +1,6 @@
 models:
-  - name: metricflow_time_spin
+  - name: metricflow_time_spine
+
     description: A time spine with one row per day, ranging from 2019-01-01 to a year from today.
     time_spine:
       standard_granularity_column: date_day  # Column for the standard grain of your table
