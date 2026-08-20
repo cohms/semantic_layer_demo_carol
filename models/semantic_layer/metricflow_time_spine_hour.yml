@@ -1,0 +1,9 @@
+models:
+  - name: metricflow_time_spine_hour
+
+    description: A time spine with one row per day per hour, ranging from 2019-01-01 to a year from today.
+    time_spine:
+      standard_granularity_column: date_hour  # Column for the standard grain of your table
+    columns:
+      - name: date_hour
+        granularity: hour  # Set the granularity of the column

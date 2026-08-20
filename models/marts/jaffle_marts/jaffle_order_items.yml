@@ -29,7 +29,7 @@ models:
           name: product
       - name: ordered_at
         description: The timestamp when the order containing the item was placed.
-        granularity: day
+        granularity: hour
         dimension:
           type: time
       - name: is_food_item
