@@ -6,7 +6,6 @@ order_items as (
 
 ),
 
-
 orders as (
     
     select * from {{ ref('stg_jaffle_orders')}}
@@ -38,11 +37,13 @@ order_supplies_summary as (
 joined as (
     select
         order_items.*,
+        orders.customer_id, 
         products.product_price,
         order_supplies_summary.supply_cost,
         products.is_food_item,
         products.is_drink_item,
-        orders.ordered_at
+        orders.ordered_at,
+        orders.ordered_date
 
     from order_items
 
