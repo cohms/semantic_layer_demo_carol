@@ -5,6 +5,10 @@
 
         {{ default_schema }}
 
+    {%- elif env_var('DBT_ENVIRONMENT') in ('dev', 'ci') -%}
+       
+        {{ default_schema }}
+    
     {%- else -%}
 
         {{ custom_schema_name | trim }}
