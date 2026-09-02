@@ -17,5 +17,6 @@ select
     product_description,
     product_price,
     is_food_item,
-    is_drink_item
+    is_drink_item, 
+    'new field' as new_field
 from products
