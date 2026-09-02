@@ -1,7 +1,6 @@
 {{
     config(
-        materialized='table',
-        schema= 'carol_new_test'
+        materialized='table'
     )
 }}
 
