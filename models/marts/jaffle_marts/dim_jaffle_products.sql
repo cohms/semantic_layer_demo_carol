@@ -1,6 +1,7 @@
 {{
     config(
         materialized='table',
+        schema= 'carol_new_test'
     )
 }}
 
@@ -17,6 +18,5 @@ select
     product_description,
     product_price,
     is_food_item,
-    is_drink_item, 
-    'new field' as new_field
+    is_drink_item
 from products
